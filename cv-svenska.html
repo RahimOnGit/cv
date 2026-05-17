@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #fbfbfd;
         }
         .apple-card {
@@ -39,232 +39,189 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
-        .fade-in {
-            animation: fadeIn 0.6s ease forwards;
-            opacity: 0;
-        }
-        .fade-in-delay-1 { animation-delay: 0.1s; }
-        .fade-in-delay-2 { animation-delay: 0.2s; }
-        .fade-in-delay-3 { animation-delay: 0.3s; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body class="text-gray-900">
-    
-    <!-- HERO SECTION -->
-    <div class="hero-gradient min-h-[70vh] flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl"></div>
-            <div class="absolute bottom-20 right-20 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
+
+<!-- HERO SECTION -->
+<div class="hero-gradient min-h-[70vh] flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
+    </div>
+
+    <div class="text-center text-white px-6 relative z-10">
+        <div class="w-48 h-48 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+            <img src="profile.jpg" alt="Abdelrahim" class="w-full h-full object-cover">
         </div>
-        
-        <div class="text-center text-white px-6 relative z-10">
-            <div class="w-48 h-48 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-                <img src="profile.jpg" alt="Abdelrahim" class="w-full h-full object-cover">
-            </div>
-            <h1 class="text-5xl md:text-6xl font-semibold mb-4 tracking-tight">Abdelrahim Elhaj</h1>
-            <p class="text-xl text-gray-400 mb-8 font-light">Fullstack-utvecklare</p>
-            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-                <span><i class="fas fa-map-marker-alt mr-2"></i>Malmö, Sverige</span>
-                <span><i class="fas fa-phone mr-2"></i>+46 762 981 389</span>
-                <span><i class="fas fa-envelope mr-2"></i>abdalraheem.saif7777@gmail.com</span>
+        <h1 id="hero-name" class="text-5xl md:text-6xl font-semibold mb-4 tracking-tight"></h1>
+        <p id="hero-title" class="text-xl text-gray-400 mb-8 font-light"></p>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <span><i class="fas fa-map-marker-alt mr-2"></i>Malmö, Sverige</span>
+            <span><i class="fas fa-phone mr-2"></i>+46 762 981 389</span>
+            <span><i class="fas fa-envelope mr-2"></i>abdalraheem.saif7777@gmail.com</span>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="max-w-4xl mx-auto px-6 -mt-20 relative z-20 pb-20">
+
+    <!-- ABOUT -->
+    <div class="apple-card p-10 mb-6">
+        <p class="section-label mb-4">Om mig</p>
+        <p id="about-text" class="text-lg text-gray-600 leading-relaxed font-light"></p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="apple-card p-10 mb-6">
+        <p class="section-label mb-8">Erfarenhet</p>
+        <div class="border-l-2 border-gray-200 pl-8 ml-2 space-y-10">
+            <div class="relative">
+                <div class="absolute -left-[41px] w-4 h-4 bg-black rounded-full mt-1.5"></div>
+                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                    <h3 class="text-xl font-medium">Fullstack-utvecklare — LIA-praktik</h3>
+                    <span class="text-sm text-gray-500">2026 – Nu</span>
+                </div>
+                <p class="text-blue-600 mb-3">FBK Balkan · Malmö</p>
+                <ul class="space-y-2 text-gray-600 font-light">
+                    <li>Utvecklar en fotbollsungdomsportal med Spring Boot och React</li>
+                    <li>Designer och implementerar RESTful API:er</li>
+                    <li>Bygger och underhåller relationsdatabaser</li>
+                    <li>Samarbetar i Agile-sprintar som Scrum Master</li>
+                    <li>Hantera versionskontroll och teamarbete med Git</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="max-w-4xl mx-auto px-6 -mt-20 relative z-20 pb-20">
-        
-        <!-- PROFILE -->
-        <div class="apple-card p-10 mb-6 fade-in">
-            <p class="section-label mb-4">Om mig</p>
-            <p class="text-lg text-gray-600 leading-relaxed font-light">
-                Arbetsam Fullstack-utvecklarstudent med en stark grund inom IT och ett stort intresse för AI och öppen källkodsutveckling. Erfaren i att leda team genom Scrum Master-rollen och dedikerad till att bygga skalbara, effektiva webbapplikationer.
-            </p>
-        </div>
+    <!-- PROJECTS -->
+    <div id="projects-section" class="apple-card p-10 mb-6"></div>
 
-        <!-- EXPERIENCE -->
-        <div class="apple-card p-10 mb-6 fade-in fade-in-delay-1">
-            <p class="section-label mb-8">Erfarenhet</p>
-            
-            <div class="border-l-2 border-gray-200 pl-8 ml-2 space-y-10">
-                <div class="relative">
-                    <div class="absolute -left-[41px] w-4 h-4 bg-black rounded-full mt-1.5"></div>
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
-                        <h3 class="text-xl font-medium">Fullstack-utvecklare — LIA-praktik</h3>
-                        <span class="text-sm text-gray-500">2026 – Nu</span>
-                    </div>
-                    <p class="text-blue-600 mb-3">FBK Balkan · Malmö</p>
-                    <ul class="space-y-2 text-gray-600 font-light">
-                        <li>Utvecklar en fotbollsungdomsportal med Spring Boot och React</li>
-                        <li>Designer och implementerar RESTful API:er</li>
-                        <li>Bygger och underhåller relationsdatabaser</li>
-                        <li>Samarbetar i Agile-sprintar som Scrum Master</li>
-                        <li>Hantera versionskontroll och teamarbete med Git</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <!-- EDUCATION -->
+    <div id="education-section" class="apple-card p-10 mb-6"></div>
 
-        <!-- PROJECTS -->
-        <div class="apple-card p-10 mb-6 fade-in fade-in-delay-2">
-            <p class="section-label mb-8">Projekt</p>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-10 h-10 bg-black text-white rounded-lg flex items-center justify-center mb-4"><i class="fas fa-scissors"></i></div>
-                    <h3 class="text-lg font-medium mb-2">Frisörsalong Boka System</h3>
-                    <p class="text-sm text-blue-600 mb-3">Spring Boot · React · Agile Scrum</p>
-                    <ul class="text-sm text-gray-600 space-y-1 font-light">
-                        <li>Byggde REST API för bokningshantering</li>
-                        <li>Implementerade relationsdatabasstruktur</li>
-                        <li>Arbetade som Scrum Master i Agile-team</li>
-                    </ul>
-                </div>
-                
-                <div class="p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div class="w-10 h-10 bg-black text-white rounded-lg flex items-center justify-center mb-4"><i class="fas fa-spider"></i></div>
-                    <h3 class="text-lg font-medium mb-2">Webbskrapnings-API</h3>
-                    <p class="text-sm text-blue-600 mb-3">Spring Boot · JSoup · Thymeleaf</p>
-                    <ul class="text-sm text-gray-600 space-y-1 font-light">
-                        <li>Byggde API som skrapar extern data</li>
-                        <li>Skapade dynamisk frontend med JS fetch</li>
-                        <li>Strukturerade återanvändbara komponenter</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <!-- SKILLS -->
+    <div id="skills-section" class="apple-card p-10 mb-6"></div>
 
-        <!-- EDUCATION -->
-        <div class="apple-card p-10 mb-6 fade-in fade-in-delay-3">
-            <p class="section-label mb-8">Utbildning</p>
-            
-            <div class="space-y-6">
-                <div class="flex flex-col md:flex-row md:justify-between md:items-center pb-4 border-b border-gray-100">
+    <!-- LANGUAGES -->
+    <div id="languages-section" class="apple-card p-10 mb-6"></div>
+
+    <!-- INTERESTS -->
+    <div id="interests-section" class="apple-card p-10"></div>
+</div>
+
+<footer class="text-center py-12 text-gray-400 text-sm">
+    <p>2026 Abdelrahim Elhaj</p>
+</footer>
+
+<script>
+    async function loadCV() {
+        try {
+            const res = await fetch('cv-data.json');
+            const d = await res.json();
+
+            // Hero
+            document.getElementById('hero-name').textContent = d.name || "Abdelrahim Elhaj";
+            document.getElementById('hero-title').textContent = d.title || "Fullstack-utvecklare";
+            document.getElementById('about-text').textContent = d.about || "";
+
+            // Projects - Fixed as requested
+            const projectsHTML = `
+                <p class="section-label mb-8">Projekt</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${(d.projects || []).map(p => `
+                        <div class="p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
+                            <h3 class="text-lg font-medium mb-3">${p.name}</h3>
+                            <p class="text-blue-600 mb-4">${p.desc}</p>
+                            <ul class="text-sm text-gray-600 space-y-1 font-light">
+                                ${(p.details || []).map(item => `<li>• ${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>`;
+
+            document.getElementById('projects-section').innerHTML = projectsHTML;
+
+            // Education
+            const educationHTML = `
+                <p class="section-label mb-8">Utbildning</p>
+                <div class="space-y-6">
+                    ${(d.education || []).map(e => `
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center pb-4 border-b border-gray-100 last:border-none">
+                            <div>
+                                <h3 class="text-lg font-medium">${e.title}</h3>
+                                <p class="text-gray-500 font-light">${e.school}</p>
+                            </div>
+                            <span class="text-sm text-gray-400 mt-2 md:mt-0">${e.period}</span>
+                        </div>
+                    `).join('')}
+                </div>`;
+            document.getElementById('education-section').innerHTML = educationHTML;
+
+            // Skills
+            const s = d.skills || {};
+            const skillsHTML = `
+                <p class="section-label mb-8">Kompetenser</p>
+                <div class="space-y-8">
                     <div>
-                        <h3 class="text-lg font-medium">Fullstack-utvecklare</h3>
-                        <p class="text-gray-500 font-light">Teknikhögskolan · Lund</p>
+                        <h4 class="text-sm font-medium text-gray-500 mb-3">Språk & Programmering</h4>
+                        <div class="flex flex-wrap gap-2">${(s.languages || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
                     </div>
-                    <span class="text-sm text-gray-400 mt-2 md:mt-0">Aug 2024 – Maj 2026</span>
-                </div>
-                
-                <div class="flex flex-col md:flex-row md:justify-between md:items-center pb-4 border-b border-gray-100">
                     <div>
-                        <h3 class="text-lg font-medium">Informationsteknologi (Kandidatexamen)</h3>
-                        <p class="text-gray-500 font-light">University of Sciences and Technology · Sudan</p>
+                        <h4 class="text-sm font-medium text-gray-500 mb-3">Frameworks</h4>
+                        <div class="flex flex-wrap gap-2">${(s.frameworks || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
                     </div>
-                    <span class="text-sm text-gray-400 mt-2 md:mt-0">Jan 2015 – Feb 2019</span>
-                </div>
-                
-                <div class="flex flex-col md:flex-row md:justify-between md:items-center">
                     <div>
-                        <h3 class="text-lg font-medium">Allmän kurs</h3>
-                        <p class="text-gray-500 font-light">Östra Grevie folkhögskola · Malmö</p>
+                        <h4 class="text-sm font-medium text-gray-500 mb-3">Databaser</h4>
+                        <div class="flex flex-wrap gap-2">${(s.databases || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
                     </div>
-                    <span class="text-sm text-gray-400 mt-2 md:mt-0">Aug 2022 – Maj 2024</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- SKILLS -->
-        <div class="apple-card p-10 mb-6 fade-in">
-            <p class="section-label mb-8">Kompetenser</p>
-            
-            <div class="space-y-6">
-                <div>
-                    <h4 class="text-sm font-medium text-gray-500 mb-3">Språk</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Java (OOP)</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">JavaScript (ES6+)</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">TypeScript</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">HTML5</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">CSS3</span>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-sm font-medium text-gray-500 mb-3">Ramverk</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Spring Boot</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">React</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Node.js</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Next.js</span>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-sm font-medium text-gray-500 mb-3">Databas & Säkerhet</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">PostgreSQL</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">MySQL</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">SQLite</span>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-sm font-medium text-gray-500 mb-3">Verktyg & DevOps</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Git/GitHub</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Postman</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm">PowerShell</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- LANGUAGES -->
-        <div class="apple-card p-10 mb-6 fade-in">
-            <p class="section-label mb-8">Språk</p>
-            
-            <div class="grid grid-cols-3 gap-4">
-                <div class="text-center p-6 bg-gray-50 rounded-2xl">
-                    <h4 class="font-medium">Engelska</h4>
-                    <p class="text-sm text-gray-500">Flytande</p>
-                </div>
-                <div class="text-center p-6 bg-gray-50 rounded-2xl">
-                    <h4 class="font-medium">Svenska</h4>
-                    <p class="text-sm text-gray-500">Godkänt</p>
-                </div>
-                <div class="text-center p-6 bg-gray-50 rounded-2xl">
-                    <h4 class="font-medium">Arabiska</h4>
-                    <p class="text-sm text-gray-500">Modersmål</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- INTERESTS -->
-        <div class="apple-card p-10 fade-in">
-            <p class="section-label mb-8">Intressen</p>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"><i class="fas fa-robot"></i></div>
                     <div>
-                        <h4 class="font-medium mb-1">AI & Automation</h4>
-                        <p class="text-sm text-gray-500 font-light">Utforskar AI-drivna utvecklingsverktyg och integrerar AI i webbarbetsflöden</p>
+                        <h4 class="text-sm font-medium text-gray-500 mb-3">Verktyg & DevOps</h4>
+                        <div class="flex flex-wrap gap-2">${(s.tools || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
                     </div>
-                </div>
-                <div class="flex items-start gap-4">
-                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"><i class="fas fa-code"></i></div>
-                    <div>
-                        <h4 class="font-medium mb-1">Öppen källkod</h4>
-                        <p class="text-sm text-gray-500 font-light">Intresserad av projekt som OpenClaw, med fokus på motoromimplementering</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </div>`;
+            document.getElementById('skills-section').innerHTML = skillsHTML;
 
-    </div>
+            // Languages - Fixed
+            const languagesHTML = `
+                <p class="section-label mb-8">Språk</p>
+                <div class="grid grid-cols-3 gap-4">
+                    ${(d.languages || []).map(l => `
+                        <div class="text-center p-6 bg-gray-50 rounded-2xl">
+                            <h4 class="font-medium">${l.name}</h4>
+                            <p class="text-sm text-gray-500">${l.level}</p>
+                        </div>
+                    `).join('')}
+                </div>`;
+            document.getElementById('languages-section').innerHTML = languagesHTML;
 
-    <!-- FOOTER -->
-    <footer class="text-center py-12 text-gray-400 text-sm">
-        <p>2026 Abdelrahim Elhaj</p>
-    </footer>
+            // Interests
+            const interestsHTML = `
+                <p class="section-label mb-8">Intressen</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    ${(d.interests || []).map(i => `
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-${i.title.includes('AI') ? 'robot' : 'code'}"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium mb-1">${i.title}</h4>
+                                <p class="text-sm text-gray-500 font-light">${i.desc}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>`;
+            document.getElementById('interests-section').innerHTML = interestsHTML;
 
+        } catch (e) {
+            console.error(e);
+            alert("Kunde inte ladda CV-data. Kontrollera att servern körs.");
+        }
+    }
+
+    // Load CV when page opens
+    window.onload = loadCV;
+</script>
 </body>
 </html>

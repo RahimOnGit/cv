@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Admin — Abdelrahim Elhaj</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .card { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .item { transition: all 0.2s; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen py-8">
+
+<div class="max-w-5xl mx-auto px-6">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-semibold">CV Admin Panel</h1>
+    <a href="cv-svenska.html" target="_blank" class="bg-black text-white px-6 py-3 rounded-2xl hover:bg-gray-800 flex items-center gap-2">
+      <i class="fas fa-eye"></i> Visa CV
+    </a>
+  </div>
+
+  <div id="status" class="hidden mb-6 px-5 py-4 rounded-2xl text-sm"></div>
+
+  <!-- Basic Info -->
+  <div class="card p-8 mb-8">
+    <h2 class="text-xl font-medium mb-6">Grundinformation</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div><label class="block text-sm mb-2">Namn</label><input id="name" class="w-full border rounded-xl px-4 py-3"></div>
+      <div><label class="block text-sm mb-2">Titel</label><input id="title" class="w-full border rounded-xl px-4 py-3"></div>
+    </div>
+    <button onclick="saveBasic()" class="mt-6 bg-black text-white px-6 py-3 rounded-2xl">Spara Grundinfo</button>
+  </div>
+
+  <!-- About -->
+  <div class="card p-8 mb-8">
+    <h2 class="text-xl font-medium mb-4">Om mig</h2>
+    <textarea id="about" rows="5" class="w-full border rounded-2xl px-4 py-3"></textarea>
+    <button onclick="saveAbout()" class="mt-4 bg-black text-white px-6 py-3 rounded-2xl">Spara Om mig</button>
+  </div>
+
+  <!-- Skills -->
+  <div class="card p-8 mb-8">
+    <h2 class="text-xl font-medium mb-6">Kompetenser</h2>
+    <div id="skills-container" class="space-y-8"></div>
+  </div>
+
+  <!-- Projects - Improved -->
+  <div class="card p-8 mb-8">
+    <h2 class="text-xl font-medium mb-6">Projekt</h2>
+    <div id="projects-container" class="space-y-6"></div>
+    <button onclick="addProject()" class="mt-6 bg-blue-600 text-white px-5 py-3 rounded-2xl hover:bg-blue-700 flex items-center gap-2">
+      <i class="fas fa-plus"></i> Nytt Projekt
+    </button>
+  </div>
+
+  <!-- Education -->
+  <div class="card p-8 mb-8">
+    <h2 class="text-xl font-medium mb-6">Utbildning</h2>
+    <div id="education-container" class="space-y-6"></div>
+    <button onclick="addEducation()" class="mt-6 bg-blue-600 text-white px-5 py-3 rounded-2xl hover:bg-blue-700">
+      + Ny Utbildning
+    </button>
+  </div>
+
+  <!-- Languages -->
+  <div class="card p-8 mb-8">
+    <h2 class="text-xl font-medium mb-6">Språk</h2>
+    <div id="languages-container" class="space-y-4"></div>
+    <button onclick="addLanguage()" class="mt-6 bg-blue-600 text-white px-5 py-3 rounded-2xl hover:bg-blue-700">
+      + Nytt Språk
+    </button>
+  </div>
+
+  <div class="text-center text-gray-500 text-sm mt-12">
+    Alla ändringar sparas automatiskt
+  </div>
+</div>
+
+<script>
+  let data = {};
+
+  async function loadData() {
+    const res = await fetch('cv-data.json');
+    data = await res.json();
+
+    document.getElementById('name').value = data.name || '';
+    document.getElementById('title').value = data.title || '';
+    document.getElementById('about').value = data.about || '';
+
+    renderSkills();
+    renderProjects();
+    renderEducation();
+    renderLanguages();
+  }
+
+  async function saveData() {
+    await fetch('/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data, null, 2)
+    });
+    showStatus("✅ Sparat!", "green");
+  }
+
+  function showStatus(msg, color) {
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = `block mb-6 px-5 py-4 rounded-2xl text-sm bg-${color}-100 text-${color}-700`;
+    setTimeout(() => el.classList.add('hidden'), 3000);
+  }
+
+  // Basic + About
+  async function saveBasic() { data.name = document.getElementById('name').value.trim(); data.title = document.getElementById('title').value.trim(); await saveData(); }
+  async function saveAbout() { data.about = document.getElementById('about').value.trim(); await saveData(); }
+
+  // ==================== SKILLS ====================
+  function renderSkills() {
+    const s = data.skills || (data.skills = {languages:[], frameworks:[], databases:[], tools:[]});
+    const container = document.getElementById('skills-container');
+    container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          ${['languages','frameworks','databases','tools'].map(key => `
+            <div>
+              <h4 class="font-medium mb-3 capitalize">${key}</h4>
+              <div class="flex flex-wrap gap-2" id="${key}-list"></div>
+              <button onclick="addSkill('${key}')" class="mt-3 text-blue-600 text-sm">+ Lägg till</button>
+            </div>
+          `).join('')}
+        </div>`;
+
+    ['languages','frameworks','databases','tools'].forEach(key => renderSkillList(key));
+  }
+
+  function renderSkillList(key) {
+    const cont = document.getElementById(key + '-list');
+    cont.innerHTML = (data.skills[key] || []).map((item, i) => `
+        <span class="inline-flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-2xl text-sm">
+          ${item}
+          <button onclick="editSkill('${key}', ${i})" class="text-blue-600">✏️</button>
+          <button onclick="deleteSkill('${key}', ${i})" class="text-red-600">×</button>
+        </span>
+      `).join('');
+  }
+
+  async function addSkill(key) {
+    const val = prompt(`Ny ${key}:`);
+    if (val) {
+      if (!data.skills[key]) data.skills[key] = [];
+      data.skills[key].push(val.trim());
+      renderSkillList(key);
+      await saveData();
+    }
+  }
+
+  async function editSkill(key, i) {
+    const newVal = prompt("Redigera:", data.skills[key][i]);
+    if (newVal) {
+      data.skills[key][i] = newVal.trim();
+      renderSkillList(key);
+      await saveData();
+    }
+  }
+
+  async function deleteSkill(key, i) {
+    if (confirm("Ta bort?")) {
+      data.skills[key].splice(i, 1);
+      renderSkillList(key);
+      await saveData();
+    }
+  }
+
+  // ==================== PROJECTS (Improved) ====================
+  function renderProjects() {
+    const container = document.getElementById('projects-container');
+    container.innerHTML = (data.projects || []).map((p, i) => `
+        <div class="item border rounded-3xl p-6 bg-gray-50">
+          <div class="flex justify-between mb-4">
+            <div>
+              <strong class="text-lg">${p.name}</strong><br>
+              <span class="text-blue-600">${p.desc}</span>
+            </div>
+            <div class="flex gap-4">
+              <button onclick="editProject(${i})" class="text-blue-600">✏️</button>
+              <button onclick="deleteProject(${i})" class="text-red-600">🗑</button>
+            </div>
+          </div>
+          <div class="text-sm text-gray-600">
+            <strong>Beskrivningspunkter:</strong>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              ${(p.details || []).map((d,j) => `<li>${d} <button onclick="editDetail(${i},${j})" class="text-xs text-blue-600">✏️</button></li>`).join('')}
+            </ul>
+          </div>
+          <button onclick="addDetail(${i})" class="mt-4 text-blue-600 text-sm">+ Lägg till punkt</button>
+        </div>
+      `).join('');
+  }
+
+  async function addProject() {
+    const name = prompt("Projektnamn:");
+    const desc = prompt("Teknikstack / kort beskrivning (blå text):");
+    if (name && desc) {
+      if (!data.projects) data.projects = [];
+      data.projects.push({ name: name.trim(), desc: desc.trim(), details: [] });
+      renderProjects();
+      await saveData();
+    }
+  }
+
+  async function editProject(i) {
+    const p = data.projects[i];
+    const name = prompt("Projektnamn:", p.name);
+    const desc = prompt("Teknikstack:", p.desc);
+    if (name) {
+      p.name = name.trim();
+      if (desc) p.desc = desc.trim();
+      renderProjects();
+      await saveData();
+    }
+  }
+
+  async function deleteProject(i) {
+    if (confirm("Ta bort hela projektet?")) {
+      data.projects.splice(i, 1);
+      renderProjects();
+      await saveData();
+    }
+  }
+
+  async function addDetail(i) {
+    const text = prompt("Ny beskrivningspunkt:");
+    if (text) {
+      if (!data.projects[i].details) data.projects[i].details = [];
+      data.projects[i].details.push(text.trim());
+      renderProjects();
+      await saveData();
+    }
+  }
+
+  async function editDetail(projectIndex, detailIndex) {
+    const newText = prompt("Redigera punkt:", data.projects[projectIndex].details[detailIndex]);
+    if (newText) {
+      data.projects[projectIndex].details[detailIndex] = newText.trim();
+      renderProjects();
+      await saveData();
+    }
+  }
+
+  // ==================== EDUCATION & LANGUAGES (same as before) ====================
+  function renderEducation() {
+    const container = document.getElementById('education-container');
+    container.innerHTML = (data.education || []).map((e, i) => `
+        <div class="item border rounded-2xl p-6">
+          <strong>${e.title}</strong><br>${e.school} — ${e.period}
+          <div class="mt-4">
+            <button onclick="editEducation(${i})" class="text-blue-600">✏️</button>
+            <button onclick="deleteEducation(${i})" class="text-red-600 ml-4">🗑</button>
+          </div>
+        </div>
+      `).join('');
+  }
+
+  async function addEducation() {
+    const title = prompt("Titel:");
+    const school = prompt("Skola:");
+    const period = prompt("Period:");
+    if (title && school) {
+      if (!data.education) data.education = [];
+      data.education.push({title, school, period: period||""});
+      renderEducation();
+      await saveData();
+    }
+  }
+
+  async function editEducation(i) {
+    const e = data.education[i];
+    const title = prompt("Titel:", e.title);
+    const school = prompt("Skola:", e.school);
+    const period = prompt("Period:", e.period);
+    if (title) {
+      data.education[i] = {title, school, period};
+      renderEducation();
+      await saveData();
+    }
+  }
+
+  async function deleteEducation(i) {
+    if (confirm("Ta bort?")) {
+      data.education.splice(i, 1);
+      renderEducation();
+      await saveData();
+    }
+  }
+
+  function renderLanguages() {
+    const container = document.getElementById('languages-container');
+    container.innerHTML = (data.languages || []).map((l, i) => `
+        <div class="flex justify-between items-center bg-gray-50 p-5 rounded-2xl">
+          <div><strong>${l.name}</strong> — ${l.level}</div>
+          <div>
+            <button onclick="editLanguage(${i})" class="text-blue-600">✏️</button>
+            <button onclick="deleteLanguage(${i})" class="text-red-600 ml-3">🗑</button>
+          </div>
+        </div>
+      `).join('');
+  }
+
+  async function addLanguage() {
+    const name = prompt("Språk:");
+    const level = prompt("Nivå:");
+    if (name && level) {
+      if (!data.languages) data.languages = [];
+      data.languages.push({name, level});
+      renderLanguages();
+      await saveData();
+    }
+  }
+
+  async function editLanguage(i) {
+    const l = data.languages[i];
+    const name = prompt("Språk:", l.name);
+    const level = prompt("Nivå:", l.level);
+    if (name) {
+      data.languages[i] = {name, level};
+      renderLanguages();
+      await saveData();
+    }
+  }
+
+  async function deleteLanguage(i) {
+    if (confirm("Ta bort?")) {
+      data.languages.splice(i, 1);
+      renderLanguages();
+      await saveData();
+    }
+  }
+
+  window.onload = loadData;
+</script>
+</body>
+</html>

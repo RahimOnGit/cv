@@ -1,0 +1,105 @@
+{
+  "name": "Abdelrahim Elhaj",
+  "title": "Fullstack-utvecklare",
+  "title_en": "Fullstack Developer",
+  "about": "Arbetsam Fullstack-utvecklare med en stark grund inom IT och ett stort intresse för AI och öppen källkodsutveckling. Erfaren i att leda team genom Scrum Master-rollen och dedikerad till att bygga skalbara, effektiva webbapplikationer.",
+  "about_en": "Hard-working Fullstack Developer student with a strong foundation in IT and a deep interest in AI and open-source development. Experienced in leading teams through the Scrum Master role and dedicated to building scalable, efficient web applications.",
+  "skills": {
+    "languages": [
+      "Java (OOP)",
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "HTML5",
+      "CSS3"
+    ],
+    "frameworks": [
+      "Spring Boot",
+      "React",
+      "Node.js",
+      "Next.js"
+    ],
+    "databases": [
+      "PostgreSQL",
+      "MySQL",
+      "SQLite"
+    ],
+    "tools": [
+      "Docker",
+      "Git/GitHub",
+      "Postman",
+      "PowerShell"
+    ]
+  },
+  "projects": [
+    {
+      "name": "The Glow Salon",
+      "desc": "Spring Boot · Thymleaf . HTMX · Agile Scrum",
+      "details": [
+        "Built REST API for booking management",
+        "Implemented relational database structure",
+        "Worked as Scrum Master in Agile team"
+      ],
+      "link": "#"
+    },
+    {
+      "name": "Refine",
+      "desc": "JavaScript , HTML , AI",
+      "details": [
+        "AI Text Refiner is a lightweight Chrome Extension (Manifest V3) that lets you instantly improve or re‑format any text you are writing in the browse"
+      ]
+    },
+    {
+      "name": "FBK Balkan",
+      "desc": "Spring Boot, Java, HTML5, Tailwind, MVC",
+      "details": [
+        "A comprehensive Spring Boot web application for managing sports club operations including teams, coaches, players, and trial registrations.",
+        "Responsive Design: Tailwind CSS with DaisyUI components",
+        "Database: SQLite (Devolopment) with JPA/Hibernate , PostgreeSQL (Production)",
+        "Security: Spring Security with custom authentication",
+        "Templates: Thymeleaf",
+        "File Upload: Support for team logos and images"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Fullstack-utvecklare",
+      "school": "Teknikhögskolan · Lund",
+      "period": "Aug 2024 – Maj 2026"
+    },
+    {
+      "title": "Informationsteknologi (Kandidatexamen)",
+      "school": "University of Sciences and Technology · Sudan",
+      "period": "Jan 2015 – Feb 2019"
+    },
+    {
+      "title": "Allmän kurs",
+      "school": "Östra Grevie folkhögskola · Malmö",
+      "period": "Aug 2022 – Maj 2024"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Engelska",
+      "level": "Flytande"
+    },
+    {
+      "name": "Obehindrad",
+      "level": null
+    },
+    {
+      "name": "Arabiska",
+      "level": "Modersmål"
+    }
+  ],
+  "interests": [
+    {
+      "title": "AI & Automation",
+      "desc": "Utforskar AI-drivna utvecklingsverktyg och integrerar AI i webbarbetsflöden"
+    },
+    {
+      "title": "Öppen källkod",
+      "desc": "Intresserad av projekt som OpenClaw, med fokus på motoromimplementering"
+    }
+  ]
+}
