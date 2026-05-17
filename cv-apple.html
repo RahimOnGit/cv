@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdelrahim Elhaj — Fullstack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+            background: #fbfbfd;
+        }
+        .apple-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+        .apple-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, #1d1d1f 0%, #2c2c2e 100%);
+        }
+        .skill-tag {
+            background: rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: all 0.2s ease;
+        }
+        .skill-tag:hover {
+            background: rgba(0,0,0,0.06);
+        }
+        .section-label {
+            color: #86868b;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+            opacity: 0;
+        }
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+    
+    <!-- HERO SECTION -->
+    <div class="hero-gradient min-h-[70vh] flex items-center justify-center relative overflow-hidden">
+        <!-- Subtle pattern -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="text-center text-white px-6 relative z-10">
+            <div class="w-48 h-48 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                <img src="profile.jpg" alt="Abdelrahim" class="w-full h-full object-cover">
+            </div>
+            <h1 class="text-5xl md:text-6xl font-semibold mb-4 tracking-tight">Abdelrahim Elhaj</h1>
+            <p class="text-xl text-gray-400 mb-8 font-light">Fullstack Developer</p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+                <span><i class="fas fa-map-marker-alt mr-2"></i>Malmö, Sweden</span>
+                <span><i class="fas fa-phone mr-2"></i>+46 762 981 389</span>
+                <span><i class="fas fa-envelope mr-2"></i>abdalraheem.saif7777@gmail.com</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="max-w-4xl mx-auto px-6 -mt-20 relative z-20 pb-20">
+        
+        <!-- PROFILE -->
+        <div class="apple-card p-10 mb-6 fade-in">
+            <p class="section-label mb-4">About</p>
+            <p class="text-lg text-gray-600 leading-relaxed font-light">
+                Hard-working Fullstack Developer student with a strong foundation in IT and a deep interest in AI and open-source development. Experienced in leading teams through the Scrum Master role and dedicated to building scalable, efficient web applications.
+            </p>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="apple-card p-10 mb-6 fade-in fade-in-delay-1">
+            <p class="section-label mb-8">Experience</p>
+            
+            <div class="border-l-2 border-gray-200 pl-8 ml-2 space-y-10">
+                <div class="relative">
+                    <div class="absolute -left-[41px] w-4 h-4 bg-black rounded-full mt-1.5"></div>
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
+                        <h3 class="text-xl font-medium">Fullstack Developer — LIA Internship</h3>
+                        <span class="text-sm text-gray-500">2026 – Present</span>
+                    </div>
+                    <p class="text-blue-600 mb-3">FBK Balkan · Malmö</p>
+                    <ul class="space-y-2 text-gray-600 font-light">
+                        <li>Developing a Football youth portal web application using Spring Boot and React</li>
+                        <li>Designing and implementing RESTful APIs</li>
+                        <li>Building and maintaining relational database structures</li>
+                        <li>Collaborating in Agile sprints as Scrum Master</li>
+                        <li>Managing version control and team workflow with Git</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="apple-card p-10 mb-6 fade-in fade-in-delay-2">
+            <p class="section-label mb-8">Projects</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
+                    <div class="w-10 h-10 bg-black text-white rounded-lg flex items-center justify-center mb-4"><i class="fas fa-scissors"></i></div>
+                    <h3 class="text-lg font-medium mb-2">Hair Salon Booking System</h3>
+                    <p class="text-sm text-blue-600 mb-3">Spring Boot · React · Agile Scrum</p>
+                    <ul class="text-sm text-gray-600 space-y-1 font-light">
+                        <li>Built REST API for booking management</li>
+                        <li>Implemented relational database structure</li>
+                        <li>Worked as Scrum Master in Agile team</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
+                    <div class="w-10 h-10 bg-black text-white rounded-lg flex items-center justify-center mb-4"><i class="fas fa-spider"></i></div>
+                    <h3 class="text-lg font-medium mb-2">Web Scraper API</h3>
+                    <p class="text-sm text-blue-600 mb-3">Spring Boot · JSoup · Thymeleaf</p>
+                    <ul class="text-sm text-gray-600 space-y-1 font-light">
+                        <li>Built API that scrapes external data</li>
+                        <li>Created dynamic frontend with JS fetch</li>
+                        <li>Structured reusable components</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="apple-card p-10 mb-6 fade-in fade-in-delay-3">
+            <p class="section-label mb-8">Education</p>
+            
+            <div class="space-y-6">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center pb-4 border-b border-gray-100">
+                    <div>
+                        <h3 class="text-lg font-medium">Fullstack Developer</h3>
+                        <p class="text-gray-500 font-light">Teknikhögskolan · Lund</p>
+                    </div>
+                    <span class="text-sm text-gray-400 mt-2 md:mt-0">Aug 2024 – May 2026</span>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center pb-4 border-b border-gray-100">
+                    <div>
+                        <h3 class="text-lg font-medium">Information Technology (B.Sc.)</h3>
+                        <p class="text-gray-500 font-light">University of Sciences and Technology · Sudan</p>
+                    </div>
+                    <span class="text-sm text-gray-400 mt-2 md:mt-0">Jan 2015 – Feb 2019</span>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                    <div>
+                        <h3 class="text-lg font-medium">General Course</h3>
+                        <p class="text-gray-500 font-light">Östra Grevie folkhögskola · Malmö</p>
+                    </div>
+                    <span class="text-sm text-gray-400 mt-2 md:mt-0">Aug 2022 – May 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="apple-card p-10 mb-6 fade-in">
+            <p class="section-label mb-8">Skills</p>
+            
+            <div class="space-y-6">
+                <div>
+                    <h4 class="text-sm font-medium text-gray-500 mb-3">Languages</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Java (OOP)</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">JavaScript (ES6+)</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">TypeScript</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">HTML5</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">CSS3</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-medium text-gray-500 mb-3">Frameworks</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Spring Boot</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">React</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Node.js</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Next.js</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-medium text-gray-500 mb-3">Database & Security</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">PostgreSQL</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">MySQL</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">SQLite</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-sm font-medium text-gray-500 mb-3">Tools & DevOps</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Docker</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Git/GitHub</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">Postman</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm">PowerShell</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LANGUAGES -->
+        <div class="apple-card p-10 mb-6 fade-in">
+            <p class="section-label mb-8">Languages</p>
+            
+            <div class="grid grid-cols-3 gap-4">
+                <div class="text-center p-6 bg-gray-50 rounded-2xl">
+                    <h4 class="font-medium">English</h4>
+                    <p class="text-sm text-gray-500">Fluent</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-2xl">
+                    <h4 class="font-medium">Swedish</h4>
+                    <p class="text-sm text-gray-500">Good</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-2xl">
+                    <h4 class="font-medium">Arabic</h4>
+                    <p class="text-sm text-gray-500">Native</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERESTS -->
+        <div class="apple-card p-10 fade-in">
+            <p class="section-label mb-8">Interests</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <h4 class="font-medium mb-1">AI & Automation</h4>
+                        <p class="text-sm text-gray-500 font-light">Exploring AI-driven development tools and integrating AI into web workflows</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center"><i class="fas fa-code"></i></div>
+                    <div>
+                        <h4 class="font-medium mb-1">Open Source</h4>
+                        <p class="text-sm text-gray-500 font-light">Interested in projects like OpenClaw, focusing on engine re-implementation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-12 text-gray-400 text-sm">
+        <p>2026 Abdelrahim Elhaj</p>
+    </footer>
+
+</body>
+</html>
