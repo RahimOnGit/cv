@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdelrahim Elhaj — Fullstack-utvecklare</title>
+    <title>Abdelrahim Elhaj — CV</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,214 +14,401 @@
         }
         .apple-card {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-            transition: all 0.3s ease;
-        }
-        .apple-card:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
         .hero-gradient {
             background: linear-gradient(180deg, #1d1d1f 0%, #2c2c2e 100%);
         }
         .skill-tag {
             background: rgba(0,0,0,0.03);
-            border: 1px solid rgba(0,0,0,0.06);
-            transition: all 0.2s ease;
-        }
-        .skill-tag:hover {
-            background: rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.05);
+            font-size: 11px;
         }
         .section-label {
             color: #86868b;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 0.1em;
             text-transform: uppercase;
+            font-weight: 600;
+        }
+        .lang-toggle {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            display: flex;
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 3px;
+            gap: 2px;
+            z-index: 50;
+        }
+        .lang-btn {
+            padding: 4px 14px;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+            border: none;
+            background: transparent;
+        }
+        .lang-btn.active {
+            background: white;
+            color: #1d1d1f;
+        }
+        .lang-btn:not(.active):hover {
+            color: rgba(255,255,255,0.85);
+        }
+
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { background: white !important; margin: 0; padding: 0; font-size: 12px; }
+            .hero-gradient {
+                background: linear-gradient(180deg, #1d1d1f 0%, #2c2c2e 100%) !important;
+                padding: 20px 0 !important;
+            }
+            .lang-toggle { display: none !important; }
+            .apple-card {
+                box-shadow: none !important;
+                border: 1px solid #eee !important;
+                margin-bottom: 10px !important;
+                break-inside: avoid;
+            }
+            .max-w-4xl {
+                max-width: 100% !important;
+                padding: 10px 16px !important;
+                margin-top: -6px !important;
+            }
+            footer { display: none !important; }
+            .p-5, .md\:p-6 { padding: 10px !important; }
+            .pb-8 { padding-bottom: 0 !important; }
+            .apple-card p, .apple-card li, .apple-card span {
+                font-size: 11px !important;
+                line-height: 1.55 !important;
+            }
+            h3 { font-size: 12px !important; }
+            h4 { font-size: 11px !important; }
+            .grid { gap: 8px !important; }
+            #profile-img-container { width: 72px !important; height: 72px !important; }
+            .text-3xl { font-size: 22px !important; }
+            .text-sm { font-size: 11px !important; }
+            .gap-4 { gap: 10px !important; }
+            .space-y-3 > * + * { margin-top: 8px !important; }
         }
     </style>
 </head>
-<body class="text-gray-900">
+<body class="text-gray-900 flex flex-col min-h-screen">
 
-<!-- HERO SECTION -->
-<div class="hero-gradient min-h-[70vh] flex items-center justify-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
-        <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl"></div>
-        <div class="absolute bottom-20 right-20 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
+<div class="hero-gradient py-10 flex items-center justify-center relative overflow-hidden">
+
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-sv" onclick="setLang('sv')">SV</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
 
     <div class="text-center text-white px-6 relative z-10">
-        <div class="w-48 h-48 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+        <div id="profile-img-container" class="w-28 h-28 mx-auto mb-3 rounded-full overflow-hidden border-2 border-white/20 shadow-xl">
             <img src="profile.jpg" alt="Abdelrahim" class="w-full h-full object-cover">
         </div>
-        <h1 id="hero-name" class="text-5xl md:text-6xl font-semibold mb-4 tracking-tight"></h1>
-        <p id="hero-title" class="text-xl text-gray-400 mb-8 font-light"></p>
-        <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-            <span><i class="fas fa-map-marker-alt mr-2"></i>Malmö, Sverige</span>
-            <span><i class="fas fa-phone mr-2"></i>+46 762 981 389</span>
-            <span><i class="fas fa-envelope mr-2"></i>abdalraheem.saif7777@gmail.com</span>
+        <h1 class="text-3xl font-semibold mb-1 tracking-tight">Abdelrahim Elhaj</h1>
+        <p class="text-sm text-gray-400 mb-3 font-light" id="hero-title"></p>
+        <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-400">
+            <span id="loc-span"><i class="fas fa-map-marker-alt mr-1.5"></i><span id="loc-text"></span></span>
+            <span><i class="fas fa-phone mr-1.5"></i>+46 762 981 389</span>
+            <span><i class="fas fa-envelope mr-1.5"></i>abdalraheem.saif7777@gmail.com</span>
         </div>
     </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="max-w-4xl mx-auto px-6 -mt-20 relative z-20 pb-20">
+<div class="max-w-4xl mx-auto px-6 -mt-6 relative z-20 pb-8 flex-grow w-full space-y-3">
 
-    <!-- ABOUT -->
-    <div class="apple-card p-10 mb-6">
-        <p class="section-label mb-4">Om mig</p>
-        <p id="about-text" class="text-lg text-gray-600 leading-relaxed font-light"></p>
+    <!-- About -->
+    <div class="apple-card p-5 md:p-6">
+        <p class="section-label mb-1" id="lbl-about"></p>
+        <p class="text-xs text-gray-600 leading-relaxed font-light" id="about-text"></p>
     </div>
 
-    <!-- EXPERIENCE -->
-    <div class="apple-card p-10 mb-6">
-        <p class="section-label mb-8">Erfarenhet</p>
-        <div class="border-l-2 border-gray-200 pl-8 ml-2 space-y-10">
+    <!-- Experience -->
+    <div class="apple-card p-5 md:p-6">
+        <p class="section-label mb-3" id="lbl-exp"></p>
+        <div class="border-l border-gray-200 pl-5 ml-1">
             <div class="relative">
-                <div class="absolute -left-[41px] w-4 h-4 bg-black rounded-full mt-1.5"></div>
-                <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-2">
-                    <h3 class="text-xl font-medium">Fullstack-utvecklare — LIA-praktik</h3>
-                    <span class="text-sm text-gray-500">2026 – Nu</span>
+                <div class="absolute -left-[25px] w-2 h-2 bg-black rounded-full mt-1.5"></div>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-0.5">
+                    <h3 class="text-sm font-medium text-gray-900" id="exp-title"></h3>
+                    <span class="text-xs text-gray-400" id="exp-period"></span>
                 </div>
-                <p class="text-blue-600 mb-3">FBK Balkan · Malmö</p>
-                <ul class="space-y-2 text-gray-600 font-light">
-                    <li>Utvecklar en fotbollsungdomsportal med Spring Boot och React</li>
-                    <li>Designer och implementerar RESTful API:er</li>
-                    <li>Bygger och underhåller relationsdatabaser</li>
-                    <li>Samarbetar i Agile-sprintar som Scrum Master</li>
-                    <li>Hantera versionskontroll och teamarbete med Git</li>
-                </ul>
+                <p class="text-[11px] text-blue-600 mb-1.5 font-medium">FBK Balkan · Malmö</p>
+                <ul class="space-y-0.5 text-xs text-gray-600 font-light list-disc list-inside" id="exp-bullets"></ul>
             </div>
         </div>
     </div>
 
-    <!-- PROJECTS -->
-    <div id="projects-section" class="apple-card p-10 mb-6"></div>
+    <!-- Projects -->
+    <div class="apple-card p-5 md:p-6" id="projects-section"></div>
 
-    <!-- EDUCATION -->
-    <div id="education-section" class="apple-card p-10 mb-6"></div>
+    <!-- Education + Languages -->
+    <div class="grid md:grid-cols-2 gap-3">
+        <div class="apple-card p-5 md:p-6" id="education-section"></div>
+        <div class="apple-card p-5 md:p-6" id="languages-section"></div>
+    </div>
 
-    <!-- SKILLS -->
-    <div id="skills-section" class="apple-card p-10 mb-6"></div>
+    <!-- Skills -->
+    <div class="apple-card p-5 md:p-6" id="skills-section"></div>
 
-    <!-- LANGUAGES -->
-    <div id="languages-section" class="apple-card p-10 mb-6"></div>
+    <!-- Interests -->
+    <div class="apple-card p-5 md:p-6" id="interests-section"></div>
 
-    <!-- INTERESTS -->
-    <div id="interests-section" class="apple-card p-10"></div>
 </div>
 
-<footer class="text-center py-12 text-gray-400 text-sm">
-    <p>2026 Abdelrahim Elhaj</p>
+<footer class="text-center py-4 text-gray-400 text-xs mt-auto">
+    <p>© 2026 Abdelrahim Elhaj</p>
 </footer>
 
 <script>
-    async function loadCV() {
-        try {
-            const res = await fetch('cv-data.json');
-            const d = await res.json();
-
-            // Hero
-            document.getElementById('hero-name').textContent = d.name || "Abdelrahim Elhaj";
-            document.getElementById('hero-title').textContent = d.title || "Fullstack-utvecklare";
-            document.getElementById('about-text').textContent = d.about || "";
-
-            // Projects - Fixed as requested
-            const projectsHTML = `
-                <p class="section-label mb-8">Projekt</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    ${(d.projects || []).map(p => `
-                        <div class="p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors">
-                            <h3 class="text-lg font-medium mb-3">${p.name}</h3>
-                            <p class="text-blue-600 mb-4">${p.desc}</p>
-                            <ul class="text-sm text-gray-600 space-y-1 font-light">
-                                ${(p.details || []).map(item => `<li>• ${item}</li>`).join('')}
-                            </ul>
-                        </div>
-                    `).join('')}
-                </div>`;
-
-            document.getElementById('projects-section').innerHTML = projectsHTML;
-
-            // Education
-            const educationHTML = `
-                <p class="section-label mb-8">Utbildning</p>
-                <div class="space-y-6">
-                    ${(d.education || []).map(e => `
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center pb-4 border-b border-gray-100 last:border-none">
-                            <div>
-                                <h3 class="text-lg font-medium">${e.title}</h3>
-                                <p class="text-gray-500 font-light">${e.school}</p>
-                            </div>
-                            <span class="text-sm text-gray-400 mt-2 md:mt-0">${e.period}</span>
-                        </div>
-                    `).join('')}
-                </div>`;
-            document.getElementById('education-section').innerHTML = educationHTML;
-
-            // Skills
-            const s = d.skills || {};
-            const skillsHTML = `
-                <p class="section-label mb-8">Kompetenser</p>
-                <div class="space-y-8">
-                    <div>
-                        <h4 class="text-sm font-medium text-gray-500 mb-3">Språk & Programmering</h4>
-                        <div class="flex flex-wrap gap-2">${(s.languages || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-medium text-gray-500 mb-3">Frameworks</h4>
-                        <div class="flex flex-wrap gap-2">${(s.frameworks || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-medium text-gray-500 mb-3">Databaser</h4>
-                        <div class="flex flex-wrap gap-2">${(s.databases || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
-                    </div>
-                    <div>
-                        <h4 class="text-sm font-medium text-gray-500 mb-3">Verktyg & DevOps</h4>
-                        <div class="flex flex-wrap gap-2">${(s.tools || []).map(l => `<span class="skill-tag px-4 py-2 rounded-full text-sm">${l}</span>`).join('')}</div>
-                    </div>
-                </div>`;
-            document.getElementById('skills-section').innerHTML = skillsHTML;
-
-            // Languages - Fixed
-            const languagesHTML = `
-                <p class="section-label mb-8">Språk</p>
-                <div class="grid grid-cols-3 gap-4">
-                    ${(d.languages || []).map(l => `
-                        <div class="text-center p-6 bg-gray-50 rounded-2xl">
-                            <h4 class="font-medium">${l.name}</h4>
-                            <p class="text-sm text-gray-500">${l.level}</p>
-                        </div>
-                    `).join('')}
-                </div>`;
-            document.getElementById('languages-section').innerHTML = languagesHTML;
-
-            // Interests
-            const interestsHTML = `
-                <p class="section-label mb-8">Intressen</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    ${(d.interests || []).map(i => `
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-${i.title.includes('AI') ? 'robot' : 'code'}"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium mb-1">${i.title}</h4>
-                                <p class="text-sm text-gray-500 font-light">${i.desc}</p>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>`;
-            document.getElementById('interests-section').innerHTML = interestsHTML;
-
-        } catch (e) {
-            console.error(e);
-            alert("Kunde inte ladda CV-data. Kontrollera att servern körs.");
+    const CV = {
+        sv: {
+            title: "Fullstack-utvecklare",
+            location: "Malmö, Sverige",
+            about: "Ambitiös Fullstack-utvecklare med en stark grund inom IT och praktisk erfarenhet av agil utveckling. Kompetent inom Java, Spring Boot och moderna frontend-teknologier, med ett brinnande intresse för AI, automatisering och skalbara webblösningar.",
+            labels: {
+                about: "Om mig",
+                exp: "Erfarenhet",
+                projects: "Projekt",
+                edu: "Utbildning",
+                lang: "Språk",
+                skills: "Kompetenser",
+                interests: "Intressen",
+                skillGroups: ["Språk", "Frameworks", "Databaser", "Verktyg"]
+            },
+            exp: {
+                title: "Systemutvecklare & Fullstack-utvecklare (LIA)",
+                period: "2026 – Nu",
+                bullets: [
+                    "Utvecklar plattform för ungdomsverksamhet med Spring Boot och React.",
+                    "Designar och distribuerar säkra RESTful API:er med PostgreSQL-databaser.",
+                    "Arbetar i agila cykler med versionshantering via Git och agerar Scrum Master."
+                ]
+            },
+            projects: [
+                {
+                    name: "FBK Balkan Ungdomsportal",
+                    desc: "Spring Boot · Java · PostgreSQL · Tailwind CSS",
+                    details: [
+                        "Byggde en produktionsredo sport- och administrationsplattform för ungdomsverksamhet.",
+                        "Implementerade REST API:er, Spring Security med rollbaserad behörighet och GDPR-datahantering.",
+                        "Agerade både utvecklare och Scrum Master i ett agilt team."
+                    ]
+                },
+                {
+                    name: "Refine Chrome Extension",
+                    desc: "JavaScript · HTML5 · LLM Integration",
+                    details: [
+                        "Utvecklade ett tillägg (Manifest V3) för snabb textförbättring i webbläsaren.",
+                        "Integrerade externa AI API:er för bearbetning av användargenererad text."
+                    ]
+                },
+                {
+                    name: "The Glow Salon",
+                    desc: "Spring Boot · Thymeleaf · HTMX · Scrum",
+                    details: [
+                        "Byggde ett komplett bokningssystem med tillhörande relationsdatabas.",
+                        "Utvecklade REST-ändpunkter för schemaläggning och hantering av bokningar."
+                    ]
+                }
+            ],
+            education: [
+                { title: "Fullstack-utvecklare", school: "Teknikhögskolan · Lund", period: "Aug 2024 – Maj 2026" },
+                { title: "Informationsteknologi (Kandidatexamen)", school: "University of Sciences and Technology", period: "Jan 2015 – Feb 2019" }
+            ],
+            languages: [
+                { name: "Svenska", level: "Obehindrad" },
+                { name: "Engelska", level: "Flytande" },
+                { name: "Arabiska", level: "Modersmål" }
+            ],
+            interests: [
+                { title: "AI & Automation", desc: "Utforskar generativa utvecklingsverktyg och skriptar arbetsflöden i Python.", icon: "robot" },
+                { title: "Öppen källkod", desc: "Intresserad av systemscheman, spelmotorarkitektur och community-drivna projekt.", icon: "code" }
+            ]
+        },
+        en: {
+            title: "Fullstack Developer",
+            location: "Malmö, Sweden",
+            about: "Ambitious Fullstack Developer student with a solid foundation in IT and practical experience in agile web development. Proficient in Java, Spring Boot, and modern frontend tools, with a strong interest in AI integration and scalable web applications.",
+            labels: {
+                about: "About Me",
+                exp: "Experience",
+                projects: "Projects",
+                edu: "Education",
+                lang: "Languages",
+                skills: "Skills & Competencies",
+                interests: "Interests",
+                skillGroups: ["Languages", "Frameworks", "Databases", "Tools"]
+            },
+            exp: {
+                title: "System Developer & Fullstack Developer (Internship)",
+                period: "2026 – Present",
+                bullets: [
+                    "Developing youth portal sports administration systems using Spring Boot and React.",
+                    "Designing and deploying secure RESTful APIs paired with PostgreSQL databases.",
+                    "Working within agile sprints handling Git versioning while acting as a Scrum Master."
+                ]
+            },
+            projects: [
+                {
+                    name: "FBK Balkan Youth Portal",
+                    desc: "Spring Boot · Java · PostgreSQL · Tailwind CSS",
+                    details: [
+                        "Built a production-ready sports management and administration platform for youth operations.",
+                        "Implemented REST APIs, Spring Security with role-based access control, and GDPR data handling.",
+                        "Acted as both a Fullstack Developer and Scrum Master within an agile team."
+                    ]
+                },
+                {
+                    name: "Refine Chrome Extension",
+                    desc: "JavaScript · HTML5 · LLM Integration",
+                    details: [
+                        "Developed a browser extension (Manifest V3) for instant text refinement.",
+                        "Integrated external AI APIs for processing and optimizing user-generated text."
+                    ]
+                },
+                {
+                    name: "The Glow Salon",
+                    desc: "Spring Boot · Thymeleaf · HTMX · Scrum",
+                    details: [
+                        "Built a complete booking system with an underlying relational database.",
+                        "Developed REST endpoints for scheduling and managing appointments seamlessly."
+                    ]
+                }
+            ],
+            education: [
+                { title: "Fullstack Developer", school: "Teknikhögskolan · Lund", period: "Aug 2024 – May 2026" },
+                { title: "Information Technology (Bachelor's Degree)", school: "University of Sciences and Technology", period: "Jan 2015 – Feb 2019" }
+            ],
+            languages: [
+                { name: "Swedish", level: "Professional" },
+                { name: "English", level: "Fluent" },
+                { name: "Arabic", level: "Native" }
+            ],
+            interests: [
+                { title: "AI & Automation", desc: "Exploring generative developer tools and scripting automated workflows in Python.", icon: "robot" },
+                { title: "Open Source", desc: "Interested in system internals, game engine architectures, and community-driven projects.", icon: "code" }
+            ]
         }
+    };
+
+    const skillKeys = ["languages", "frameworks", "databases", "tools"];
+    const skillData = {
+        languages: ["Java (OOP)", "JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3"],
+        frameworks: ["Spring Boot", "React", "Node.js", "Next.js"],
+        databases: ["PostgreSQL", "MySQL", "SQLite"],
+        tools: ["Docker", "Git/GitHub", "Postman", "Agile/Scrum"]
+    };
+
+    function setLang(lang) {
+        const d = CV[lang];
+
+        // Toggle buttons
+        document.getElementById('btn-sv').classList.toggle('active', lang === 'sv');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        document.documentElement.lang = lang;
+
+        // Header
+        document.getElementById('hero-title').textContent = d.title;
+        document.getElementById('loc-text').textContent = d.location;
+
+        // About
+        document.getElementById('lbl-about').textContent = d.labels.about;
+        document.getElementById('about-text').textContent = d.about;
+
+        // Experience
+        document.getElementById('lbl-exp').textContent = d.labels.exp;
+        document.getElementById('exp-title').textContent = d.exp.title;
+        document.getElementById('exp-period').textContent = d.exp.period;
+        document.getElementById('exp-bullets').innerHTML = d.exp.bullets.map(b => `<li>${b}</li>`).join('');
+
+        // Projects
+        document.getElementById('projects-section').innerHTML = `
+        <p class="section-label mb-2">${d.labels.projects}</p>
+        <div class="grid md:grid-cols-3 gap-3">
+            ${d.projects.map(p => `
+                <div class="p-3 bg-gray-50 rounded-xl">
+                    <h3 class="text-xs font-semibold mb-0.5 text-gray-900">${p.name}</h3>
+                    <p class="text-[10px] text-blue-600 mb-1.5 font-medium">${p.desc}</p>
+                    <ul class="text-[10px] text-gray-500 space-y-0.5 font-light">
+                        ${p.details.map(item => `<li>• ${item}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('')}
+        </div>`;
+
+        // Education
+        document.getElementById('education-section').innerHTML = `
+        <p class="section-label mb-2">${d.labels.edu}</p>
+        <div class="space-y-2">
+            ${d.education.map((e, i) => `
+                <div class="pb-1.5 ${i < d.education.length - 1 ? 'border-b border-gray-100' : ''}">
+                    <h3 class="text-xs font-semibold text-gray-900">${e.title}</h3>
+                    <p class="text-[10px] text-gray-500 font-light">${e.school}</p>
+                    <span class="text-[10px] text-gray-400">${e.period}</span>
+                </div>
+            `).join('')}
+        </div>`;
+
+        // Languages
+        document.getElementById('languages-section').innerHTML = `
+        <p class="section-label mb-2">${d.labels.lang}</p>
+        <div class="grid grid-cols-2 gap-2">
+            ${d.languages.map(l => `
+                <div class="p-2 bg-gray-50 rounded-xl text-center">
+                    <h4 class="text-xs font-semibold text-gray-900">${l.name}</h4>
+                    <p class="text-[10px] text-gray-500">${l.level}</p>
+                </div>
+            `).join('')}
+        </div>`;
+
+        // Skills
+        document.getElementById('skills-section').innerHTML = `
+        <p class="section-label mb-2">${d.labels.skills}</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            ${skillKeys.map((key, idx) => `
+                <div>
+                    <h4 class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">${d.labels.skillGroups[idx]}</h4>
+                    <div class="flex flex-wrap gap-1">
+                        ${skillData[key].map(s => `<span class="skill-tag px-2 py-0.5 rounded-md">${s}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('')}
+        </div>`;
+
+        // Interests
+        document.getElementById('interests-section').innerHTML = `
+        <p class="section-label mb-2">${d.labels.interests}</p>
+        <div class="grid md:grid-cols-2 gap-3">
+            ${d.interests.map(i => `
+                <div class="flex items-center gap-3 p-1.5 bg-gray-50/50 rounded-xl">
+                    <div class="w-7 h-7 bg-gray-100 rounded-lg flex items-center justify-center text-xs flex-shrink-0">
+                        <i class="fas fa-${i.icon}"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-semibold text-gray-900">${i.title}</h4>
+                        <p class="text-[10px] text-gray-500 font-light">${i.desc}</p>
+                    </div>
+                </div>
+            `).join('')}
+        </div>`;
+
+        // Save preference
+        localStorage.setItem('cv-lang', lang);
     }
 
-    // Load CV when page opens
-    window.onload = loadCV;
+    // Init: check localStorage or default to sv
+    const savedLang = localStorage.getItem('cv-lang') || 'sv';
+    setLang(savedLang);
 </script>
 </body>
 </html>

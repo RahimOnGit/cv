@@ -2,8 +2,8 @@
   "name": "Abdelrahim Elhaj",
   "title": "Fullstack-utvecklare",
   "title_en": "Fullstack Developer",
-  "about": "Arbetsam Fullstack-utvecklare med en stark grund inom IT och ett stort intresse för AI och öppen källkodsutveckling. Erfaren i att leda team genom Scrum Master-rollen och dedikerad till att bygga skalbara, effektiva webbapplikationer.",
-  "about_en": "Hard-working Fullstack Developer student with a strong foundation in IT and a deep interest in AI and open-source development. Experienced in leading teams through the Scrum Master role and dedicated to building scalable, efficient web applications.",
+  "about": "Ambitiös Fullstack-utvecklare med en stark grund inom IT och praktisk erfarenhet av agil utveckling. Kompetent inom Java, Spring Boot och moderna frontend-teknologier, med ett brinnande intresse för AI, automatisering och skalbara webblösningar.",
+  "about_en": "Ambitious Fullstack Developer student with a solid foundation in IT and practical experience in agile web development. Proficient in Java, Spring Boot, and modern frontend tools, with a strong interest in AI integration and scalable web applications.",
   "skills": {
     "languages": [
       "Java (OOP)",
@@ -27,37 +27,33 @@
       "Docker",
       "Git/GitHub",
       "Postman",
-      "PowerShell"
+      "Agile/Scrum"
     ]
   },
   "projects": [
     {
-      "name": "The Glow Salon",
-      "desc": "Spring Boot · Thymleaf . HTMX · Agile Scrum",
+      "name": "FBK Balkan Ungdomsportal",
+      "desc": "Spring Boot · Java · PostgreSQL · Tailwind CSS",
       "details": [
-        "Built REST API for booking management",
-        "Implemented relational database structure",
-        "Worked as Scrum Master in Agile team"
-      ],
-      "link": "#"
-    },
-    {
-      "name": "Refine",
-      "desc": "JavaScript , HTML , AI",
-      "details": [
-        "AI Text Refiner is a lightweight Chrome Extension (Manifest V3) that lets you instantly improve or re‑format any text you are writing in the browse"
+        "Byggde en produktionsredo sport- och administrationsplattform för ungdomsverksamhet.",
+        "Implementerade REST API:er, Spring Security med rollbaserad behörighet och GDPR-datahantering.",
+        "Agerade både utvecklare och Scrum Master i ett agilt team."
       ]
     },
     {
-      "name": "FBK Balkan",
-      "desc": "Spring Boot, Java, HTML5, Tailwind, MVC",
+      "name": "Refine Chrome Extension",
+      "desc": "JavaScript · HTML5 · LLM Integration",
       "details": [
-        "A comprehensive Spring Boot web application for managing sports club operations including teams, coaches, players, and trial registrations.",
-        "Responsive Design: Tailwind CSS with DaisyUI components",
-        "Database: SQLite (Devolopment) with JPA/Hibernate , PostgreeSQL (Production)",
-        "Security: Spring Security with custom authentication",
-        "Templates: Thymeleaf",
-        "File Upload: Support for team logos and images"
+        "Utvecklade ett tillägg (Manifest V3) för snabb textförbättring i webbläsaren.",
+        "Integrerade externa AI API:er för bearbetning av användargenererad text."
+      ]
+    },
+    {
+      "name": "The Glow Salon",
+      "desc": "Spring Boot · Thymeleaf · HTMX · Scrum",
+      "details": [
+        "Byggde ett komplett bokningssystem med tillhörande relationsdatabas.",
+        "Utvecklade REST-ändpunkter för schemaläggning och hantering av bokningar."
       ]
     }
   ],
@@ -69,37 +65,28 @@
     },
     {
       "title": "Informationsteknologi (Kandidatexamen)",
-      "school": "University of Sciences and Technology · Sudan",
+      "school": "University of Sciences and Technology",
       "period": "Jan 2015 – Feb 2019"
-    },
-    {
-      "title": "Allmän kurs",
-      "school": "Östra Grevie folkhögskola · Malmö",
-      "period": "Aug 2022 – Maj 2024"
     }
   ],
   "languages": [
     {
+      "name": "Svenska",
+      "level": "Obehindrad"
+    },
+    {
       "name": "Engelska",
       "level": "Flytande"
-    },
-    {
-      "name": "Obehindrad",
-      "level": null
-    },
-    {
-      "name": "Arabiska",
-      "level": "Modersmål"
     }
   ],
   "interests": [
     {
       "title": "AI & Automation",
-      "desc": "Utforskar AI-drivna utvecklingsverktyg och integrerar AI i webbarbetsflöden"
+      "desc": "Utforskar generativa utvecklingsverktyg och skriptar arbetsflöden i Python."
     },
     {
       "title": "Öppen källkod",
-      "desc": "Intresserad av projekt som OpenClaw, med fokus på motoromimplementering"
+      "desc": "Intresserad av systemscheman, spelmotorarkitektur och community-drivna projekt."
     }
   ]
 }

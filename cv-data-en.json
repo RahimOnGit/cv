@@ -1,0 +1,90 @@
+{
+  "name": "Abdelrahim Elhaj",
+  "title": "Fullstack Developer",
+  "about": "Ambitious Fullstack Developer student with a solid foundation in IT and practical experience in agile web development. Proficient in Java, Spring Boot, and modern frontend tools, with a strong interest in AI integration and scalable web applications.",
+  "skills": {
+    "languages": [
+      "Java (OOP)",
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "HTML5",
+      "CSS3"
+    ],
+    "frameworks": [
+      "Spring Boot",
+      "React",
+      "Node.js",
+      "Next.js"
+    ],
+    "databases": [
+      "PostgreSQL",
+      "MySQL",
+      "SQLite"
+    ],
+    "tools": [
+      "Docker",
+      "Git/GitHub",
+      "Postman",
+      "Agile/Scrum"
+    ]
+  },
+  "projects": [
+    {
+      "name": "FBK Balkan Youth Portal",
+      "desc": "Spring Boot · Java · PostgreSQL · Tailwind CSS",
+      "details": [
+        "Built a production-ready sports management and administration platform for youth operations.",
+        "Implemented REST APIs, Spring Security with role-based access control, and GDPR data handling.",
+        "Acted as both a Fullstack Developer and Scrum Master within an agile team."
+      ]
+    },
+    {
+      "name": "Refine Chrome Extension",
+      "desc": "JavaScript · HTML5 · LLM Integration",
+      "details": [
+        "Developed a browser extension (Manifest V3) for instant text refinement.",
+        "Integrated external AI APIs for processing and optimizing user-generated text."
+      ]
+    },
+    {
+      "name": "The Glow Salon",
+      "desc": "Spring Boot · Thymeleaf · HTMX · Scrum",
+      "details": [
+        "Built a complete booking system with an underlying relational database.",
+        "Developed REST endpoints for scheduling and managing appointments seamlessly."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Fullstack Developer",
+      "school": "Teknikhögskolan · Lund",
+      "period": "Aug 2024 – May 2026"
+    },
+    {
+      "title": "Information Technology (Bachelor's Degree)",
+      "school": "University of Sciences and Technology",
+      "period": "Jan 2015 – Feb 2019"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Swedish",
+      "level": "Professional"
+    },
+    {
+      "name": "English",
+      "level": "Fluent"
+    }
+  ],
+  "interests": [
+    {
+      "title": "AI & Automation",
+      "desc": "Exploring generative developer tools and scripting automated workflows in Python."
+    },
+    {
+      "title": "Open Source",
+      "desc": "Interested in system internals, game engine architectures, and community-driven projects."
+    }
+  ]
+}

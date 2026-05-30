@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdelrahim Elhaj — Fullstack Developer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f5f7fa;
+      color: #1a1a2e;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Subtle animated background */
+    .bg-gradient {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      background:
+              radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
+    }
+
+    /* Glass card — LIGHT MODE */
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow:
+              0 8px 32px rgba(0, 0, 0, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 50px 24px 80px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 40px 0 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .profile-pic {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(99, 102, 241, 0.3);
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
+    }
+    .header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1a1a2e 0%, #6366f1 50%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+    .header .role {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #6366f1;
+      margin-bottom: 4px;
+    }
+    .header .location {
+      font-size: 0.9rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header .contact {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .header .contact a {
+      color: #6366f1;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Section */
+    .section {
+      margin-top: 24px;
+      padding: 28px 32px;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title svg {
+      width: 20px;
+      height: 20px;
+      color: #6366f1;
+    }
+
+    /* About */
+    .about p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #475569;
+    }
+
+    /* Experience */
+    .experience-item {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    }
+    .experience-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .exp-header h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .exp-header .date {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      font-weight: 500;
+      background: rgba(99, 102, 241, 0.08);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .exp-header .company {
+      font-size: 0.9rem;
+      color: #6366f1;
+      font-weight: 500;
+    }
+    .exp-item ul {
+      list-style: none;
+      margin-top: 8px;
+    }
+    .exp-item li {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .exp-item li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background: #6366f1;
+      border-radius: 50%;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .project-card {
+      padding: 20px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      border-radius: 14px;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover { transform: translateY(-3px); }
+    .project-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+    .project-card .tech {
+      font-size: 0.78rem;
+      color: #6366f1;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .project-card ul {
+      list-style: none;
+    }
+    .project-card li {
+      font-size: 0.82rem;
+      color: #475569;
+      line-height: 1.5;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+    .project-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 5px;
+      height: 5px;
+      background: #a78bfa;
+      border-radius: 50%;
+    }
+
+    /* Education */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    }
+    .edu-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .edu-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .edu-item .school {
+      font-size: 0.85rem;
+      color: #6366f1;
+      font-weight: 500;
+    }
+    .edu-item .date {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      font-weight: 500;
+      background: rgba(99, 102, 241, 0.08);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .skill-category h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #6366f1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .skill-category p {
+      font-size: 0.88rem;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    /* Languages */
+    .languages {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .lang-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(99, 102, 241, 0.06);
+      border: 1px solid rgba(99, 102, 241, 0.12);
+      border-radius: 14px;
+      min-width: 140px;
+    }
+    .lang-item .name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+    .lang-item .level {
+      font-size: 0.8rem;
+      color: #6366f1;
+      font-weight: 500;
+    }
+
+    /* Interests */
+    .interests {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .interest-tag {
+      padding: 8px 18px;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #4f46e5;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .header h1 { font-size: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .section { padding: 22px 20px; }
+      .exp-header { flex-direction: column; }
+    }
+
+    /* Print PDF styles */
+    @media print {
+      body { background: #fff; color: #000; }
+      .bg-gradient { display: none; }
+      .glass { background: #fff; border: 1px solid #e2e8f0; box-shadow: none; }
+      .section { break-inside: avoid; padding: 16px 0; }
+      .header { padding: 20px 0; }
+      .interest-tag { border: 1px solid #cbd5e1; }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="profile.jpg" alt="Abdelrahim Elhaj" class="profile-pic">
+    <h1>Abdelrahim Elhaj</h1>
+    <div class="role">Fullstack Developer</div>
+    <div class="location">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      Malmo, Sweden
+    </div>
+    <div class="contact">
+      <a href="tel:+46762981389">+46 76 298 1389</a>
+      <a href="mailto:abdalraheem.saif7777@gmail.com">abdalraheem.saif7777@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section glass">
+    <div class="section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      About
+    </div>
+    <p>Hard-working Fullstack Developer student with a strong foundation in IT and a deep interest in AI and open-source development. Experienced in leading teams through the Scrum Master role and dedicated to building scalable, efficient web applications.</p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section glass">
+    <div class="section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      Experience
+    </div>
+
+    <div class="experience-item">
+      <div class="exp-header">
+        <div>
+          <h3>Fullstack Developer — LIA Internship</h3>
+          <div class="company">FBK Balkan · Malmo</div>
+        </div>
+        <span class="date">2026 – Present</span>
+      </div>
+      <div class="exp-item">
+        <ul>
+          <li>Developing a Football youth portal web application using Spring Boot and React</li>
+          <li>Designing and implementing RESTful APIs</li>
+          <li>Building and maintaining relational database structures</li>
+          <li>Collaborating in Agile sprints as Scrum Master</li>
+          <li>Managing version control and team workflow with Git</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section glass">
+    <div class="section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      Projects
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Hair Salon Booking System</h3>
+        <div class="tech">Spring Boot · React · Agile Scrum</div>
+        <ul>
+          <li>Built REST API for booking management</li>
+          <li>Implemented relational database structure</li>
+          <li>Worked as Scrum Master in Agile team</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>Web Scraper API</h3>
+        <div class="tech">Spring Boot · JSoup · Thymeleaf</div>
+        <ul>
+          <li>Built API that scrapes external data</li>
+          <li>Created dynamic frontend with JS fetch</li>
+          <li>Structured reusable components</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section glass">
+    <div class="section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 4 3 6 3s6-1 6-3v-5"></path></svg>
+      Education
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <h3>Fullstack Developer</h3>
+        <div class="school">Teknikhogskolan · Lund</div>
+        <div style="font-size:0.82rem;color:#94a3b8;">Information Technology (B.Sc.)</div>
+      </div>
+      <span class="date">Jan 2015 – Feb 2019</span>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <h3>General Course</h3>
+        <div class="school">Ostra Grevie Folkhogskola · Malmo</div>
+      </div>
+      <span class="date">Aug 2024 – May 2026</span>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <h3>University of Sciences and Technology</h3>
+        <div class="school">Sudan</div>
+      </div>
+      <span class="date">Aug 2022 – May 2024</span>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section glass">
+    <div class="section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      Skills
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h4>Languages</h4>
+        <p>Java (OOP)<br>JavaScript (ES6+)<br>TypeScript<br>HTML5 · CSS3</p>
+      </div>
+      <div class="skill-category">
+        <h4>Frameworks</h4>
+        <p>Spring Boot<br>React<br>Node.js<br>Next.js</p>
+      </div>
+      <div class="skill-category">
+        <h4>Database & Tools</h4>
+        <p>PostgreSQL · MySQL · SQLite<br>Docker · Git/GitHub<br>Postman · PowerShell</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section glass">
+    <div class="section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      Languages
+    </div>
+    <div class="languages">
+      <div class="lang-item">
+        <span class="name">English</span>
+        <span class="level">Fluent</span>
+      </div>
+      <div class="lang-item">
+        <span class="name">Arabic</span>
+        <span class="level">Native</span>
+      </div>
+      <div class="lang-item">
+        <span class="name">Swedish</span>
+        <span class="level">Good</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERESTS -->
+  <div class="section glass">
+    <div class="section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      Interests
+    </div>
+    <div class="interests">
+      <span class="interest-tag">AI & Automation</span>
+      <span class="interest-tag">Open Source</span>
+      <span class="interest-tag">AI-driven Dev Tools</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

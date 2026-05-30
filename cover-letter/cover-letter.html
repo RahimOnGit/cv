@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Cover Letter</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <style>
+  body {
+   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+   background: #fbfbfd;
+  }
+  .apple-card {
+   background: white;
+   border-radius: 20px;
+   box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  }
+  .hero-gradient {
+   background: linear-gradient(180deg, #1d1d1f 0%, #2c2c2e 100%);
+  }
+  .section-label {
+   color: #86868b;
+   font-size: 11px;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+  }
+
+ </style>
+</head>
+<body class="text-gray-900 flex flex-col min-h-screen">
+
+<div class="hero-gradient py-10 print:py-8">
+ <div class="max-w-4xl mx-auto px-6 text-center text-white">
+  <h1 class="text-3xl md:text-4xl font-semibold mb-2">Cover Letter</h1>
+  <p class="text-lg text-gray-400 font-light" data-personal="title"></p>
+ </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 -mt-8 pb-10 flex-grow w-full">
+ <div class="apple-card p-8 md:p-10 bg-white">
+
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 pb-6 border-b border-gray-100">
+   <div>
+    <h2 class="text-xl font-semibold" data-personal="name"></h2>
+    <p class="text-sm text-gray-500" data-personal="title"></p>
+   </div>
+   <div class="mt-3 sm:mt-0 text-left sm:text-right text-xs text-gray-500 space-y-1">
+    <p><i class="fas fa-map-marker-alt w-4"></i><span data-personal="location"></span></p>
+    <p><i class="fas fa-phone w-4"></i><span data-personal="phone"></span></p>
+    <p><i class="fas fa-envelope w-4"></i><span data-personal="email"></span></p>
+   </div>
+  </div>
+
+  <p class="section-label mb-1">Subject</p>
+  <h3 class="text-lg font-semibold mb-5" data-personal="subject"></h3>
+
+  <div class="text-gray-600 text-sm leading-relaxed whitespace-pre-line mb-8" data-personal="body"></div>
+
+  <div class="flex items-center gap-4">
+   <div class="w-12 h-12 rounded-full overflow-hidden border border-gray-200">
+    <img data-personal-photo src="profile.jpg" alt="" class="w-full h-full object-cover">
+   </div>
+   <div>
+    <p class="font-semibold text-sm" data-personal="name"></p>
+    <p class="text-xs text-gray-500" data-personal="title"></p>
+   </div>
+  </div>
+
+ </div>
+</div>
+
+<footer class="text-center py-4 text-gray-400 text-xs mt-auto">
+ <p><span data-personal="year"></span> — <span data-personal="name"></span></p>
+</footer>
+
+<script>
+ (async function loadPersonalInfo() {
+  const DEFAULT_PHOTO = 'profile.jpg';
+  const urlParams = new URLSearchParams(window.location.search);
+  const lang = urlParams.get('lang');
+  const jsonFile = lang === 'sv' ? 'personal_info_sv.json' : 'personal_info.json';
+
+  try {
+   const res = await fetch(jsonFile);
+   if (!res.ok) throw new Error(res.statusText);
+   const info = await res.json();
+   const photo = info.photo && !String(info.photo).toLowerCase().includes('optional') ? info.photo : DEFAULT_PHOTO;
+
+   document.title = `Cover Letter — ${info.name || 'Cover Letter'}`;
+
+   document.querySelectorAll('[data-personal]').forEach((el) => {
+    const key = el.dataset.personal;
+    if (key === 'year') { el.textContent = new Date().getFullYear(); return; }
+    if (info[key] != null && info[key] !== '') { el.textContent = info[key]; }
+   });
+
+   const img = document.querySelector('[data-personal-photo]');
+   if (img) { img.src = photo; img.alt = info.name || ''; }
+  } catch (err) { console.warn(`Could not load ${jsonFile}:`, err); }
+ })();
+</script>
+</body>
+</html>
